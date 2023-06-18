@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  labels:
+    app: back
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: back
+  template:
+    metadata:
+      labels:
+        app: back
+    spec:
+      containers:
+      - name: back
+        image: ghcr.io/expruc/kubernetes-gradutaion-drill/k8s-final-drill:backend
+        env:
+        - name: PORT
+          valueFrom:
+            configMapKeyRef:
+              name: portmap
+              key: port
+
