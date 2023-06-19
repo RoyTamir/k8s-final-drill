@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: urlmap
 data:
-  backendurl: "http://10.129.3.75:80/"
+  backendurl: "http://backend.com/"

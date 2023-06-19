@@ -28,3 +28,11 @@ spec:
             configMapKeyRef:
               name: urlmap
               key: backendurl
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: frontend-name
+spec:
+  type: ExternalName
+  externalName: frontend.com
