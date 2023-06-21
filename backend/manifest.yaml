@@ -24,10 +24,12 @@ spec:
               name: portmap
               key: port
 
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
-  name: backend-name
+  name: backend-port
 spec:
-  type: ExternalName
-  externalName: backend.com
+  selector:
+    app: back
+  ports:
+  - port: 8080

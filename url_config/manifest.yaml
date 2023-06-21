@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: urlmap
 data:
-  backendurl: "http://backend.com/"
+  backendurl: "http://backend-port:8080"

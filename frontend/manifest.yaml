@@ -29,10 +29,23 @@ spec:
               name: urlmap
               key: backendurl
 
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
-  name: frontend-name
+  name: frontend-port
 spec:
-  type: ExternalName
-  externalName: frontend.com
+  selector:
+    app: front
+  ports:
+  - port: 8080
+
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: frontend-route
+spec:
+  host: frontend-port-k8s-final-drill-roy.apps.uwtd7zko.eastus.aroapp.io
+  path: "/front" 
+  to:
+    kind: Service
+    name: frontend-port
