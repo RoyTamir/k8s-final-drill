@@ -23,6 +23,24 @@ spec:
             configMapKeyRef:
               name: portmap
               key: port
+        volumeMounts:
+        - mountPath: "/tmp/persistent"
+          name: persistent-volume
+        - mountPath: "/tmp/ephemeral"
+          name: ephemeral-volume
+      volumes:
+      - name: persistent-volume
+        persistentVolumeClaim:
+          claimName: persistent-claim
+      - name: ephemeral-volume
+      ephemeral:
+        volumeClaimTemplate:
+          spec:
+            accessModes: [ "ReadWriteOnce" ]
+            storageClassName: "scratch-storage-class"
+            resources:
+              requests:
+                storage: 1Gi
 
 apiVersion: v1
 kind: Service
